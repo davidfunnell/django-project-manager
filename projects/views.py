@@ -7,20 +7,16 @@ from projects.forms import ProjectForm
 
 
 @login_required
-def project_list(request):
+def list_projects(request):
     projects = Project.objects.filter(owner=request.user)
-    context = {
-        "project_list": projects,
-    }
+    context = {"project_list": projects}
     return render(request, "projects/list.html", context)
 
 
 @login_required
 def show_project(request, id):
     project_detail = get_object_or_404(Project, id=id)
-    context = {
-        "project_object": project_detail
-    }
+    context = {"project_object": project_detail}
     return render(request, "projects/detail.html", context)
 
 
@@ -33,7 +29,5 @@ def create_project(request):
             return redirect("list_projects")
     else:
         form = ProjectForm()
-    context = {
-        "form": form,
-    }
+    context = {"form": form}
     return render(request, "projects/create.html", context)

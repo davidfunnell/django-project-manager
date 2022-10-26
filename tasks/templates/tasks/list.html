@@ -1,37 +1,36 @@
 {% extends 'base.html' %}
 
 {% block title %}
-My Tasks
+    My Tasks
 {% endblock title %}
-
 {% block content %}
-  <main>
-    <div>
-        <h1>My Tasks</h1>
-        {% if my_tasks|length > 0 %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Start date</th>
-                    <th>Due Date</th>
-                    <th>Is completed</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in my_tasks %}
-                <tr>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.start_date }}</td>
-                    <td>{{ item.due_date }}</td>
-                    <td>{{ item.is_completed|yesno }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% else %}
-        <p>You have no tasks</p>
-        {% endif %}
-    </div>
-  </main>
+    <main>
+        <div>
+            <h1>My Tasks</h1>
+            {% if my_tasks|length > 0 %}
+                <table class="table_display">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Start date</th>
+                            <th>Due Date</th>
+                            <th>Is completed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in my_tasks %}
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td class= "center_item_table">{{ item.start_date }}</td>
+                                <td class= "center_item_table">{{ item.due_date }}</td>
+                                <td class= "center_item_table">{{ item.is_completed|yesno }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>You have no tasks</p>
+            {% endif %}
+        </div>
+    </main>
 {% endblock content %}
